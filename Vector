@@ -1,0 +1,171 @@
+package edu.uwm.cs351;
+
+/**
+ * An immutable class representing a two dimensional vector
+ * in Cartesian space.
+ */
+public class Vector {
+	// TODO: declare fields
+	final double _dx;
+	final double _dy;
+	
+	/**
+	 * Construct an empty vector.
+	 */
+	public Vector() {
+		// TODO
+		this._dx = 0.0;
+		this._dy = 0.0;
+		
+	}
+	
+	/**
+	 * Construct a vector with given delta
+	 * @param dx
+	 * @param dy
+	 */
+	public Vector(double dx, double dy) {
+		// TODO
+		
+		this._dx = dx;
+		this._dy = dy;
+	}
+	
+	/**
+	 * Create a vector from p1 to p2.
+	 * @param p1
+	 * @param p2
+	 */
+	public Vector(Point p1, Point p2) {
+		// TODO
+		
+		double vx1 = p1.x();
+		double vy1 = p1.y();
+		
+		double vx2 = p2.x();
+		double vy2 = p2.y();
+		
+		double v_x = (vx2 - vx1);
+		double v_y = (vy2 - vy1);
+		
+		this._dx = v_x;
+		this._dy = v_y;
+		
+	}
+
+	public double dx() { 
+		
+		return _dx; 
+		
+		}
+	
+	public double dy() { 
+		
+		return _dy; 
+		
+		}
+	
+	/**
+	 * Return the new point after applying this vector to the argument.
+	 * @param p old position
+	 * @return new position
+	 */
+	public Point move(Point p) {
+		// TODO
+		
+		double px = p.x();
+		double py = p.y();
+		
+		double vx = this.dx();
+		double vy = this.dy();
+		
+		double npx = (px + vx);
+		double npy = (py + vy);
+		
+		return new Point(npx, npy);
+	}
+	
+	/** Compute the magnitude of this vector.
+	 * How far does it take a point from its origin?
+	 * @return magnitude
+	 */
+	public double magnitude() {
+		// TODO
+		
+		double vx = this.dx();
+		double vy = this.dy();
+		
+		double magnitude = Math.abs(Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2)));
+		
+		return magnitude;
+	}
+	
+	/**
+	 * Return a new vector that is the sum of this vector and the parameter.
+	 * @param other another vector (must not be null)
+	 * @return new vector that is sum of this and other vectors.
+	 */
+	public Vector add(Vector other) {
+		// TODO
+		
+		double vx1 = this.dx();
+		double vy1 = this.dy();
+		
+		double vx2 = other.dx();
+		double vy2 = other.dy();
+		
+		double dx = (vx2 + vx1);
+		double dy = (vy2 + vy1);
+		
+		return new Vector(dx,dy);
+	}
+	
+	/**
+	 * Compute a new vector that scales this vector by the given amount.
+	 * The new vector points in the same direction (unless scale is zero)
+	 * but has magnitude scaled by the given amount.  If the scale
+	 * is negative, the new vector points in the <em>opposite</em> direction.
+	 * @param s scale amount
+	 * @return new vector that scales this vector
+	 */
+	public Vector scale(double s) {
+		// TODO
+		
+		double dx = this.dx();
+		double dy = this.dy();
+		
+		dx *= s;
+		dy *= s;
+		
+		return new Vector(dx, dy);
+		}
+	
+	/**
+	 * Return a unit vector (one with magnitude 1.0) in the same direction
+	 * as this vector.  This operation is not defined on the zero vector.
+	 * @return new vector with unit magnitude in the same direction as this.
+	 */
+	public Vector normalize() {
+		// TODO
+		double dx = this.dx();
+		double dy = this.dy();
+		
+		double magnitude = this.magnitude();
+		
+		dx *= (1 / magnitude); 
+		dy *= (1 / magnitude);
+		
+		return new Vector(dx, dy);
+	}
+	
+	/**
+	 * Return a string of the form <dx,dy>.
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		// TODO
+		
+		return "<" + this._dx + "," + this._dy + ">";
+	}
+}
