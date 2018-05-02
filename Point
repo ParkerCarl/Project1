@@ -1,0 +1,70 @@
+package edu.uwm.cs351;
+
+/**
+ * Immutable location for CS 351 objects.
+ * @author boyland
+ */
+public class Point {
+	final double _x;
+	final double _y;
+	
+	public Point(double x, double y) {
+		// TODO
+		this._x = x;
+		this._y = y;
+	}
+	
+	public double x(){
+		return this._x;
+	}
+	
+	public double y(){
+		return this._y;
+		}
+	// Getters for _x and _y (see assignment)
+	
+	/**
+	 * Round this point to the closest AWT point (using integer coordinates).
+	 * @return rounded point
+	 */
+	public java.awt.Point asAWT() {
+		// TODO
+		int asAWT_x = (int)Math.round(this._x);
+		int asAWT_y = (int)Math.round(this._y);
+		
+		return new java.awt.Point(asAWT_x,asAWT_y);
+	}
+	
+	/**
+	 * Compute the distance (always positive) between two points.
+	 * @param other another point, must not be null
+	 * @return distance between points.
+	 */
+	public double distance(Point other) {
+		// TODO
+		
+		double px1 = this.x();
+		double py1 = this.y();
+		
+		double px2 = other.x();
+		double py2 = other.y();
+		
+		double distance_x = (px2 - px1);
+		double distance_y = (py2 - py1);
+		
+		
+		double distance = Math.sqrt(Math.pow(distance_x, 2) + Math.pow(distance_y, 2));
+				
+		return distance;
+	}
+	
+	/**
+	 * Return string of the form (x,y)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		// TODO
+		return "(" + this._x + "," + this._y + ")";
+	}
+}
